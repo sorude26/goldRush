@@ -19,36 +19,11 @@ public class StageFloor : MonoBehaviour
         m_rB.isKinematic = true;
         m_rB.useGravity = false;
         m_startPos = gameObject.transform.position;
-        //StartCoroutine(AutoMove());
     }
     private void Update()
     {
-        var offs = new Vector3(0, 0, Mathf.Sin(Time.time) * m_moveSpeed);
+        var offs = m_targetPos * Mathf.Sin(Time.time * m_waitTime) * m_moveSpeed;
         m_rB.MovePosition(m_startPos + offs);
     }
-    IEnumerator AutoMove()
-    {
-        while (true)
-        {
-            yield return Move(m_targetPos, m_startPos);
-            yield return Wait();
-            yield return Move(m_startPos, m_targetPos);
-            yield return Wait();
-        }
-    }
-    IEnumerator Move(Vector3 target, Vector3 start)
-    {
-        Vector3 dir = (target - start).normalized;
-        while ((target - gameObject.transform.position).sqrMagnitude > 0.2f)
-        {
-            //m_rB.velocity = dir * m_moveSpeed;
-            m_rB.MovePosition(target);
-            yield return null;
-        }
-    }
-    IEnumerator Wait()
-    {
-        m_rB.velocity = Vector3.zero;
-        yield return new WaitForSeconds(m_waitTime);
-    }
+    
 }
