@@ -19,6 +19,7 @@ public class CoinPool : MonoBehaviour
             var coin = Instantiate(m_coinPrefab);
             coin.transform.SetParent(transform);
             m_allCoins[i] = coin;
+            coin.gameObject.SetActive(false);
         }
     }
     public void CallCoin(Vector3 pos)
@@ -37,5 +38,23 @@ public class CoinPool : MonoBehaviour
                 return;
             }
         }
+    }
+    public Coin ShotCoin(Vector3 pos)
+    {
+        foreach (var coin in m_allCoins)
+        {
+            if (coin.gameObject.activeSelf)
+            {
+                continue;
+            }
+            else
+            {
+                coin.transform.position = pos;
+                coin.gameObject.SetActive(true);
+                coin.CoinRB.velocity = Vector3.zero;
+                return coin;
+            }
+        }
+        return null;
     }
 }

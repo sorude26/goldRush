@@ -5,13 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Coin : MonoBehaviour
 {
-    Rigidbody m_rb;
+    [SerializeField] Rigidbody m_rb;
     public Rigidbody CoinRB { get => m_rb; } 
-    private void Start()
-    {
-        m_rb = GetComponent<Rigidbody>();
-        gameObject.SetActive(false);
-    }
 
     private void OnTriggerEnter(Collider other)
     {

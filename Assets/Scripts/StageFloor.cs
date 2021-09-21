@@ -12,18 +12,18 @@ public class StageFloor : MonoBehaviour
     [SerializeField]
     float m_waitTime = 2f;
     Vector3 m_startPos;
-    Rigidbody m_rB;
+    Rigidbody m_rb;
     void Start()
     {
-        m_rB = GetComponent<Rigidbody>();
-        m_rB.isKinematic = true;
-        m_rB.useGravity = false;
+        m_rb = GetComponent<Rigidbody>();
+        m_rb.isKinematic = true;
+        m_rb.useGravity = false;
         m_startPos = gameObject.transform.position;
     }
-    private void Update()
+    
+    private void LateUpdate()
     {
         var offs = m_targetPos * Mathf.Sin(Time.time * m_waitTime) * m_moveSpeed;
-        m_rB.MovePosition(m_startPos + offs);
+        m_rb.MovePosition(m_startPos + offs);
     }
-    
 }
