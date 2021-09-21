@@ -12,6 +12,10 @@ public class ShotControl : MonoBehaviour
     Transform m_muzzel = default;
     public void Shot()
     {
+        if (GameManager.Instance.Count < 2)
+        {
+            return;
+        }
         Vector3 dir = m_tartget.position - m_muzzel.position;
         var coin = CoinPool.Instance.ShotCoin(m_muzzel.position);
         if (coin)

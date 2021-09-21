@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_body: {fileID: 3240429431112285460}
-  m_hp: 3
+  m_hp: 1
   m_coolTime: 0.3
 --- !u!1 &3240429431117168231
 GameObject:

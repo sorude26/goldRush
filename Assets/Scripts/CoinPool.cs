@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CoinPool : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class CoinPool : MonoBehaviour
     int m_allCoinNumber = 500;
     [SerializeField]
     Coin m_coinPrefab = default;
-    Coin[] m_allCoins = default;
+    Coin[] m_allCoins = default;    
     private void Awake()
     {
         Instance = this;
@@ -35,6 +36,7 @@ public class CoinPool : MonoBehaviour
                 coin.transform.position = pos;
                 coin.gameObject.SetActive(true);
                 coin.CoinRB.velocity = Vector3.zero;
+                coin.transform.rotation = Quaternion.Euler(0, 0, 0);
                 return;
             }
         }
@@ -56,5 +58,9 @@ public class CoinPool : MonoBehaviour
             }
         }
         return null;
+    }
+    public void AddCount()
+    {
+        GameManager.Instance.UpdateCount();
     }
 }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - GameArea
   - Coin
+  - GetCoin
   layers:
   - Default
   - TransparentFX

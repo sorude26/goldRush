@@ -14,6 +14,11 @@ public class Coin : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+        if (other.tag == "GetCoin")
+        {
+            CoinPool.Instance.AddCount();
+            gameObject.SetActive(false);
+        }
     }
     private void OnTriggerStay(Collider other)
     {
