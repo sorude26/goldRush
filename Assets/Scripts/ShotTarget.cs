@@ -7,6 +7,8 @@ public class ShotTarget : MonoBehaviour
     [SerializeField]
     GameObject m_body = default;
     [SerializeField]
+    Transform m_hitPos = default;
+    [SerializeField]
     int m_hp = 10;
     [SerializeField]
     float m_coolTime = 0.3f;
@@ -39,7 +41,14 @@ public class ShotTarget : MonoBehaviour
     {
         if (m_hitEffect)
         {
-            Instantiate(m_hitEffect).transform.position = transform.position;
+            if (m_hitPos)
+            {
+                Instantiate(m_hitEffect).transform.position = m_hitPos.position;
+            }
+            else
+            {
+                Instantiate(m_hitEffect).transform.position = transform.position;
+            }
         }
         yield return new WaitForSeconds(m_coolTime);
         m_hit = false;
