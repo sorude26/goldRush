@@ -10,6 +10,10 @@ public class ShotTarget : MonoBehaviour
     int m_hp = 10;
     [SerializeField]
     float m_coolTime = 0.3f;
+    [SerializeField]
+    GameObject m_hitEffect = default;
+    [SerializeField]
+    GameObject m_deadEffect = default;
     bool m_hit;
     private void OnTriggerEnter(Collider other)
     {
@@ -19,6 +23,10 @@ public class ShotTarget : MonoBehaviour
             m_hp--;
             if (m_hp <= 0)
             {
+                if (m_deadEffect)
+                {
+                    Instantiate(m_deadEffect).transform.position = transform.position;
+                }
                 Destroy(m_body);
             }
             else
@@ -29,6 +37,10 @@ public class ShotTarget : MonoBehaviour
     }
     IEnumerator CoolTime()
     {
+        if (m_hitEffect)
+        {
+            Instantiate(m_hitEffect).transform.position = transform.position;
+        }
         yield return new WaitForSeconds(m_coolTime);
         m_hit = false;
     }

@@ -18,6 +18,7 @@ public class MoveStraight : MonoBehaviour
         m_rb = GetComponent<Rigidbody>();
         m_dir = -m_start.normalized;
         m_dir.y = 0;
+        transform.forward = m_dir;
         m_move = true;
     }
     private void LateUpdate()
