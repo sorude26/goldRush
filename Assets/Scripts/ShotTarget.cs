@@ -17,6 +17,8 @@ public class ShotTarget : MonoBehaviour
     [SerializeField]
     GameObject m_deadEffect = default;
     bool m_hit;
+    [SerializeField]
+    UnityEngine.Events.UnityEvent m_onDead = null;
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Coin" && !m_hit)
@@ -25,11 +27,15 @@ public class ShotTarget : MonoBehaviour
             m_hp--;
             if (m_hp <= 0)
             {
+                m_onDead?.Invoke();
                 if (m_deadEffect)
                 {
                     Instantiate(m_deadEffect).transform.position = transform.position;
                 }
-                Destroy(m_body);
+                if (m_body)
+                {
+                    Destroy(m_body);
+                }
             }
             else
             {
