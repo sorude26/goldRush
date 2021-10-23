@@ -5,15 +5,15 @@ using UnityEngine;
 public class SpawnControl : MonoBehaviour
 {
     [SerializeField]
-    float[] m_spawnSpeed;
+    float[] m_spawnSpeed = default;
     [SerializeField]
-    float[] m_spawnTime;
+    float[] m_spawnTime = default;
     [SerializeField]
-    GameObject[] m_spawnObjects;
+    EnemyPool[] m_enemyPools = default;
     [SerializeField]
-    Transform[] m_spawnPos;
-    float[] m_allSpawnSpeed;
-    float[] m_timers;
+    Transform[] m_spawnPos = default;
+    float[] m_allSpawnSpeed = default;
+    float[] m_timers = default;
     bool m_spawn = false;
     int m_count = 0;
 
@@ -36,8 +36,8 @@ public class SpawnControl : MonoBehaviour
             m_timers[i] += m_allSpawnSpeed[i] * Time.deltaTime;
             if (m_timers[i] >= m_spawnTime[i])
             {
-                var spawnObject = Instantiate(m_spawnObjects[i]);
-                spawnObject.transform.position = m_spawnPos[m_count].position;
+                var spawnObject = m_enemyPools[i].GetEnemy(m_spawnPos[m_count].position);
+                spawnObject.StartSet();
                 m_count++;
                 m_timers[i] = 0;
                 if (m_count >= m_spawnPos.Length)
