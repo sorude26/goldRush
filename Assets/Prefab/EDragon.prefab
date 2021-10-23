@@ -209,8 +209,11 @@ MonoBehaviour:
   m_coolTime: 0.5
   m_hitEffect: {fileID: 3583458251717172330, guid: 0efcf411465761444aabe9e92ee2bf71,
     type: 3}
-  m_deadEffect: {fileID: 3583458251717172330, guid: 0efcf411465761444aabe9e92ee2bf71,
+  m_deadEffect: {fileID: 5285524602227699168, guid: 7abbf2543f1045a48a9f6678aa63caef,
     type: 3}
+  m_onDead:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &425762379108069159
 PrefabInstance:
   m_ObjectHideFlags: 0

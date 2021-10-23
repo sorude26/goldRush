@@ -15,6 +15,10 @@ public class EnemyControl : MonoBehaviour
     EnemyShot m_shot = default;
     [SerializeField]
     Transform m_muzzle = default;
+    public void StartSet()
+    {
+        m_attackTimer = 0;
+    }
     void Update()
     {
         m_attackTimer += Time.deltaTime;
@@ -26,8 +30,8 @@ public class EnemyControl : MonoBehaviour
     }
     public void Attack()
     {
-        var shot = Instantiate(m_shot);
-        shot.transform.position = m_muzzle.position;
+        var shot = ShotPool.Instance.GetShot(m_muzzle.position);
+        shot.ShotRB.velocity = Vector3.zero;
         shot.ShotRB.AddForce((transform.forward + Vector3.up * 0.5f)*m_power,ForceMode.Impulse);
     }
 }

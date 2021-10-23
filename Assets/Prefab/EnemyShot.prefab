@@ -4974,7 +4974,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_body: {fileID: 5079733112640890348}
+  m_hitPos: {fileID: 0}
   m_hp: 1
   m_coolTime: 0.3
   m_hitEffect: {fileID: 0}
-  m_deadEffect: {fileID: 0}
+  m_deadEffect: {fileID: 1752697909354684086, guid: 502ee5d3cfc9aaf4e9a2c7de5115fec5,
+    type: 3}
+  m_onDead:
+    m_PersistentCalls:
+      m_Calls: []
