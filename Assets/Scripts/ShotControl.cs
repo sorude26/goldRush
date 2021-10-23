@@ -10,6 +10,10 @@ public class ShotControl : MonoBehaviour
     Transform m_tartget = default;
     [SerializeField]
     Transform m_muzzel = default;
+    private void Start()
+    {
+        InputController.Instance.OnShot += Shot;
+    }
     public void Shot()
     {
         if (GameManager.Instance.Count < 2)
