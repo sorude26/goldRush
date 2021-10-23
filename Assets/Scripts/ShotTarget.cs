@@ -10,8 +10,10 @@ public class ShotTarget : MonoBehaviour
     Transform m_hitPos = default;
     [SerializeField]
     int m_hp = 10;
+    int m_currentHp = default;
     [SerializeField]
     float m_coolTime = 0.3f;
+    float m_coolTimer = default;
     [SerializeField]
     GameObject m_hitEffect = default;
     [SerializeField]
@@ -19,44 +21,61 @@ public class ShotTarget : MonoBehaviour
     bool m_hit;
     [SerializeField]
     UnityEngine.Events.UnityEvent m_onDead = null;
+    private void Start()
+    {
+        StartSet();
+    }
+    public void StartSet()
+    {
+        m_currentHp = m_hp;
+        m_hit = false;
+        m_coolTimer = 0;
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Coin" && !m_hit)
         {
             m_hit = true;
-            m_hp--;
-            if (m_hp <= 0)
+            m_currentHp--;
+            if (m_currentHp <= 0)
             {
                 m_onDead?.Invoke();
                 if (m_deadEffect)
                 {
                     Instantiate(m_deadEffect).transform.position = transform.position;
                 }
-                if (m_body)
-                {
-                    Destroy(m_body);
-                }
+                gameObject.SetActive(false);
             }
             else
             {
-                StartCoroutine(CoolTime());
+                if (m_hitEffect)
+                {
+                    if (m_hitPos)
+                    {
+                        Instantiate(m_hitEffect).transform.position = m_hitPos.position;
+                    }
+                    else
+                    {
+                        Instantiate(m_hitEffect).transform.position = transform.position;
+                    }
+                }
             }
         }
     }
-    IEnumerator CoolTime()
+    private void Update()
     {
-        if (m_hitEffect)
+        if (!m_hit)
         {
-            if (m_hitPos)
+            return;
+        }
+        if (m_coolTimer < m_coolTime)
+        {
+            m_coolTimer += Time.deltaTime;
+            if (m_coolTimer >= m_coolTime)
             {
-                Instantiate(m_hitEffect).transform.position = m_hitPos.position;
-            }
-            else
-            {
-                Instantiate(m_hitEffect).transform.position = transform.position;
+                m_coolTimer = 0;
+                m_hit = false;
             }
         }
-        yield return new WaitForSeconds(m_coolTime);
-        m_hit = false;
     }
 }

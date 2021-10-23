@@ -8,7 +8,7 @@ public class GameAreaObject : MonoBehaviour
     {
         if (other.tag == "GameArea")
         {
-            Destroy(this.gameObject);
+            gameObject.SetActive(false);
         }
     }
 }
