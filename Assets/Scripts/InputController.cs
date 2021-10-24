@@ -14,9 +14,31 @@ public class InputController : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     Vector2 m_beginPos = default;
     [SerializeField]
     float m_shotInputRange = 10f;
+    bool m_move = default;
     private void Awake()
     {
         Instance = this;
+    }
+    private void Update()
+    {
+        if (Input.GetButton("Horizontal"))
+        {
+            var dir = Input.GetAxisRaw("Horizontal");
+            if (dir > 0)
+            {
+                OnMove?.Invoke(1);
+            }
+            else if (dir < 0)
+            {
+                OnMove?.Invoke(-1);
+            }
+            m_move = true;
+        }
+        else if(m_move)
+        {
+            m_move = false;
+            OnMove?.Invoke(0);
+        }
     }
     public void OnPointerDown(PointerEventData eventData)
     {

@@ -12,8 +12,6 @@ public class EnemyControl : MonoBehaviour
     [SerializeField]
     float m_power = 5f;
     [SerializeField]
-    EnemyShot m_shot = default;
-    [SerializeField]
     Transform m_muzzle = default;
     public void StartSet()
     {

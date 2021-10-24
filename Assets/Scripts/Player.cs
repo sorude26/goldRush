@@ -11,15 +11,36 @@ public class Player : MonoBehaviour
     float m_movePower = 1.2f;
     [SerializeField]
     Rigidbody m_rb = default;
+    [SerializeField]
+    GameObject m_hitEffect = default;
     public int CurrentLife { get; private set; }
     private void Start()
     {
         CurrentLife = m_maxLife;
-        InputController.Instance.OnMove += Move;
+        if (InputController.Instance)
+        {
+            InputController.Instance.OnMove += Move;
+        }
     }
     public void Move(int dir)
     {
-        m_rb.velocity = Vector3.right * dir * m_movePower;
+        m_rb.AddForce(Vector3.right * dir * m_movePower);
     }
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Shot")
+        {
+            CurrentLife--;
+            if (m_hitEffect)
+            {
+                Instantiate(m_hitEffect).transform.position = other.transform.position;
+            }
+            GameManager.Instance.Damage();
+            other.gameObject?.SetActive(false);
+            if (CurrentLife <= 0)
+            {
+                gameObject.SetActive(false);
+            }
+        }
+    }
 }

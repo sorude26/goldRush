@@ -37,7 +37,7 @@ public class SpawnControl : MonoBehaviour
             if (m_timers[i] >= m_spawnTime[i])
             {
                 var spawnObject = m_enemyPools[i].GetEnemy(m_spawnPos[m_count].position);
-                spawnObject.StartSet();
+                spawnObject?.StartSet();
                 m_count++;
                 m_timers[i] = 0;
                 if (m_count >= m_spawnPos.Length)

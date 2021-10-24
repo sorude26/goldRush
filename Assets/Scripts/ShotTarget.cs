@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShotTarget : MonoBehaviour
 {
     [SerializeField]
-    GameObject m_body = default;
+    int m_score = 100;
     [SerializeField]
     Transform m_hitPos = default;
     [SerializeField]
@@ -43,6 +43,11 @@ public class ShotTarget : MonoBehaviour
                 if (m_deadEffect)
                 {
                     Instantiate(m_deadEffect).transform.position = transform.position;
+                }
+                if (m_score > 0)
+                {
+                    var score = TextPool.Instance.GetScore(transform.position);
+                    score.ViewScore(m_score);
                 }
                 gameObject.SetActive(false);
             }

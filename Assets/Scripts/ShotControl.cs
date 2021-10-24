@@ -12,7 +12,10 @@ public class ShotControl : MonoBehaviour
     Transform m_muzzel = default;
     private void Start()
     {
-        InputController.Instance.OnShot += Shot;
+        if (InputController.Instance)
+        {
+            InputController.Instance.OnShot += Shot;
+        }
     }
     public void Shot()
     {

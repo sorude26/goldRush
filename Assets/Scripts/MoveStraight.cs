@@ -15,6 +15,7 @@ public class MoveStraight : MonoBehaviour
     float m_timer = 0;
     public void StartSet()
     {
+        m_timer = 0;
         m_start = this.transform.position;
         m_dir = -m_start.normalized;
         m_dir.y = 0;

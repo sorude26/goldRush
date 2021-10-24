@@ -4825,7 +4825,7 @@ GameObject:
   - component: {fileID: 4341481124507650954}
   m_Layer: 0
   m_Name: EnemyShot
-  m_TagString: Untagged
+  m_TagString: Shot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4973,7 +4973,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b12bf5d04481e394da6b8db895ccd52d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_body: {fileID: 5079733112640890348}
+  m_score: 0
   m_hitPos: {fileID: 0}
   m_hp: 1
   m_coolTime: 0.3
