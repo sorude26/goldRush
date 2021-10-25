@@ -16,6 +16,8 @@ public class SpawnControl : MonoBehaviour
     float[] m_timers = default;
     bool m_spawn = false;
     int m_count = 0;
+    [SerializeField]
+    Transform[] m_startSpawnPos = default;
 
     void Start()
     {
@@ -25,7 +27,7 @@ public class SpawnControl : MonoBehaviour
         for (int i = 0; i < m_allSpawnSpeed.Length; i++)
         {
             m_allSpawnSpeed[i] = 1f;
-        }
+        }       
     }
 
     void Update()
@@ -75,6 +77,11 @@ public class SpawnControl : MonoBehaviour
         m_spawn = true;
         m_count = 0;
         PositionShuffle();
+        for (int i = 0; i < m_startSpawnPos.Length; i++)
+        {
+            var spawnObject = m_enemyPools[0].GetEnemy(m_startSpawnPos[i].position);
+            spawnObject?.StartSet();
+        }
     }
     void SpeedUp(float speed)
     {
