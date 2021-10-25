@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
     }
     public void Move(int dir)
     {
-        m_rb.AddForce(Vector3.right * dir * m_movePower);
+        m_rb.velocity = Vector3.right * dir * m_movePower;
     }
     private void OnTriggerEnter(Collider other)
     {
