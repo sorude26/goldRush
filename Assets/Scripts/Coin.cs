@@ -27,4 +27,8 @@ public class Coin : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+    public void DestroyCoin()
+    {
+        Destroy(gameObject);
+    }
 }

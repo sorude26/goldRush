@@ -29,4 +29,8 @@ public class ScoreText : MonoBehaviour
         }
         gameObject.SetActive(false);
     }
+    public void DestroyText()
+    {
+        Destroy(gameObject);
+    }
 }

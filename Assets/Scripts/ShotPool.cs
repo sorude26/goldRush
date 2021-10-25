@@ -22,6 +22,14 @@ public class ShotPool : MonoBehaviour
             shot.gameObject.SetActive(false);
         }
     }
+    public void DestroyAll()
+    {
+        for (int i = 0; i < m_allShot.Length; i++)
+        {
+            m_allShot[i].DestroySot();
+            m_allShot[i] = null;
+        }
+    }
     public void CallShot(Vector3 pos)
     {
         foreach (var shot in m_allShot)

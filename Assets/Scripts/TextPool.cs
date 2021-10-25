@@ -22,6 +22,14 @@ public class TextPool : MonoBehaviour
             score.gameObject.SetActive(false);
         }
     }
+    public void DestroyAll()
+    {
+        for (int i = 0; i < m_allObject.Length; i++)
+        {
+            m_allObject[i].DestroyText();
+            m_allObject[i] = null;
+        }
+    }
     public void CallScore(Vector3 pos)
     {
         foreach (var score in m_allObject)

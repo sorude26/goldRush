@@ -23,6 +23,14 @@ public class CoinPool : MonoBehaviour
             coin.gameObject.SetActive(false);
         }
     }
+    public void DestroyAll()
+    {
+        for (int i = 0; i < m_allCoins.Length; i++)
+        {
+            m_allCoins[i].DestroyCoin();
+            m_allCoins[i] = null;
+        }
+    }
     public void CallCoin(Vector3 pos)
     {
         foreach (var coin in m_allCoins)
