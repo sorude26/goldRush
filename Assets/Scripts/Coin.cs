@@ -20,13 +20,6 @@ public class Coin : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.tag == "GameArea")
-        {
-            gameObject.SetActive(false);
-        }
-    }
     public void DestroyCoin()
     {
         Destroy(gameObject);

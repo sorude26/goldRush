@@ -7,7 +7,7 @@ public class FollowMouse : MonoBehaviour
     private Vector3 position;
     private Vector3 screenToWorldPointPosition;
    
-    private void Update()
+    private void LateUpdate()
     {
         position = Input.mousePosition;
         position.z = 10f;

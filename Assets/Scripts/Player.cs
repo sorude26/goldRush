@@ -11,8 +11,6 @@ public class Player : MonoBehaviour
     float m_movePower = 1.2f;
     [SerializeField]
     Rigidbody m_rb = default;
-    [SerializeField]
-    GameObject m_hitEffect = default;
     public int CurrentLife { get; private set; }
     private void Start()
     {
@@ -31,10 +29,7 @@ public class Player : MonoBehaviour
         if (other.tag == "Shot")
         {
             CurrentLife--;
-            if (m_hitEffect)
-            {
-                Instantiate(m_hitEffect).transform.position = other.transform.position;
-            }
+            EffectPool.Instance.PlayEffect(EffectType.Hit, other.transform.position);
             GameManager.Instance.Damage();
             other.gameObject?.SetActive(false);
             if (CurrentLife <= 0)

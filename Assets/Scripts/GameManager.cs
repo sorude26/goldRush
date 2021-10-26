@@ -57,6 +57,10 @@ public class GameManager : MonoBehaviour
         {
             m_dragons.AddDragon();
             m_count = 0;
+            if (m_addCount > 5)
+            {
+                m_addCount--;
+            }
         }
     }
     public void AddScore(int score)
@@ -83,7 +87,7 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator GameOver()
     {
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(2f);
         m_rankingPrefab.gameObject.SetActive(true);
         m_rankingPrefab.SetScoreOfCurrentPlay(m_score);
     }

@@ -33,20 +33,17 @@ public class SpawnControl : MonoBehaviour
     void Update()
     {
         if (!m_spawn) return;
-        for (int i = 0; i < m_timers.Length; i++)
+        m_timers[0] += m_allSpawnSpeed[0] * Time.deltaTime;
+        if (m_timers[0] >= m_spawnTime[0])
         {
-            m_timers[i] += m_allSpawnSpeed[i] * Time.deltaTime;
-            if (m_timers[i] >= m_spawnTime[i])
+            var spawnObject = m_enemyPools[0].GetEnemy(m_spawnPos[m_count].position);
+            spawnObject?.StartSet();
+            m_count++;
+            m_timers[0] = 0;
+            if (m_count >= m_spawnPos.Length)
             {
-                var spawnObject = m_enemyPools[i].GetEnemy(m_spawnPos[m_count].position);
-                spawnObject?.StartSet();
-                m_count++;
-                m_timers[i] = 0;
-                if (m_count >= m_spawnPos.Length)
-                {
-                    m_count = 0;
-                    PositionShuffle();
-                }
+                m_count = 0;
+                PositionShuffle();
             }
         }
     }

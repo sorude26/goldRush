@@ -15,9 +15,9 @@ public class ShotTarget : MonoBehaviour
     float m_coolTime = 0.3f;
     float m_coolTimer = default;
     [SerializeField]
-    GameObject m_hitEffect = default;
+    EffectType m_hitEffect = default;
     [SerializeField]
-    GameObject m_deadEffect = default;
+    EffectType m_deadEffect = default;
     bool m_hit;
     [SerializeField]
     UnityEngine.Events.UnityEvent m_onDead = null;
@@ -40,10 +40,7 @@ public class ShotTarget : MonoBehaviour
             if (m_currentHp <= 0)
             {
                 m_onDead?.Invoke();
-                if (m_deadEffect)
-                {
-                    Instantiate(m_deadEffect).transform.position = transform.position;
-                }
+                EffectPool.Instance.PlayEffect(m_deadEffect, transform.position);
                 if (m_score > 0)
                 {
                     var score = TextPool.Instance.GetScore(transform.position);
@@ -53,16 +50,13 @@ public class ShotTarget : MonoBehaviour
             }
             else
             {
-                if (m_hitEffect)
+                if (m_hitPos)
                 {
-                    if (m_hitPos)
-                    {
-                        Instantiate(m_hitEffect).transform.position = m_hitPos.position;
-                    }
-                    else
-                    {
-                        Instantiate(m_hitEffect).transform.position = transform.position;
-                    }
+                    EffectPool.Instance.PlayEffect(m_hitEffect, m_hitPos.position);
+                }
+                else
+                {
+                    EffectPool.Instance.PlayEffect(m_hitEffect, transform.position);
                 }
             }
         }

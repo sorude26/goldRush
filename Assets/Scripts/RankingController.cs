@@ -16,6 +16,8 @@ public class RankingController : MonoBehaviour
     [SerializeField]
     RectTransform m_entryPanel = default;
     [SerializeField]
+    RectTransform m_limitMassagePanel = default;
+    [SerializeField]
     float m_gracePeriod = 10f;
     float m_timer;
     List<NCMBObject> m_ranking = default;
@@ -46,6 +48,14 @@ public class RankingController : MonoBehaviour
             m_ranking.Clear();
             FadeController.Instance.StartFadeOut(GameManager.Instance.LoadScene);
         }
+    }
+    public void CloseInput()
+    {
+        m_entryPanel.gameObject.SetActive(false);
+    }
+    public void CloseMassage()
+    {
+        m_limitMassagePanel.gameObject.SetActive(false);
     }
     public void GetRanking(int score)
     {
@@ -92,6 +102,11 @@ public class RankingController : MonoBehaviour
     }
     public void Entry()
     {
+        if (m_nameInput.text.Length > 10)
+        {
+            m_limitMassagePanel.gameObject.SetActive(true);
+            return;
+        }
         NCMBObject obj = new NCMBObject("HighScore");
         obj["Name"] = m_nameInput.text;
         obj["Score"] = m_score;

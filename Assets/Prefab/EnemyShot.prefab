@@ -4860,7 +4860,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5079733112640890348}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -4873,7 +4873,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9af417f1641b72d43be82772fc667f63, type: 2}
+  - {fileID: 2100000, guid: 552b10f9e6d3b1a46a1c46b7bb0cc4a9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4977,9 +4977,8 @@ MonoBehaviour:
   m_hitPos: {fileID: 0}
   m_hp: 1
   m_coolTime: 0.3
-  m_hitEffect: {fileID: 0}
-  m_deadEffect: {fileID: 1752697909354684086, guid: 502ee5d3cfc9aaf4e9a2c7de5115fec5,
-    type: 3}
+  m_hitEffect: 4
+  m_deadEffect: 4
   m_onDead:
     m_PersistentCalls:
       m_Calls: []
