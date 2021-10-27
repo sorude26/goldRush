@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     int m_startCoin = 100;
     [SerializeField]
     int m_addCount = 20;
+    int m_dragonCount = 0;
     int m_count = 0;
     int m_score = 0;
     int m_lifeCount = 0;
@@ -57,8 +58,14 @@ public class GameManager : MonoBehaviour
         {
             m_dragons.AddDragon();
             m_count = 0;
-            if (m_addCount > 5)
+            if (m_addCount <= 20)
             {
+                return;
+            }
+            m_dragonCount++;
+            if (m_dragonCount > 5)
+            {
+                m_dragonCount = 0;
                 m_addCount--;
             }
         }

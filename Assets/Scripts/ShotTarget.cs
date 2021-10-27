@@ -43,7 +43,7 @@ public class ShotTarget : MonoBehaviour
                 EffectPool.Instance.PlayEffect(m_deadEffect, transform.position);
                 if (m_score > 0)
                 {
-                    var score = TextPool.Instance.GetScore(transform.position);
+                    var score = TextPool.Instance.GetScore(m_hitPos.position);
                     score.ViewScore(m_score);
                 }
                 gameObject.SetActive(false);

@@ -107,6 +107,10 @@ public class RankingController : MonoBehaviour
             m_limitMassagePanel.gameObject.SetActive(true);
             return;
         }
+        if (m_nameInput.text.Length <= 0)
+        {
+            return;
+        }
         NCMBObject obj = new NCMBObject("HighScore");
         obj["Name"] = m_nameInput.text;
         obj["Score"] = m_score;

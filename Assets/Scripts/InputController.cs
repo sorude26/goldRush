@@ -11,8 +11,6 @@ public class InputController : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     [SerializeField]
     UnityEngine.Events.UnityEvent m_onShot = null;
     public event Action<int> OnMove;
-    [SerializeField]
-    float m_shotInputRange = 10f;
     bool m_move = default;
     private void Awake()
     {
